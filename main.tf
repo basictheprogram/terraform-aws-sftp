@@ -46,7 +46,7 @@ resource "aws_transfer_server" "main" {
   tags = "${merge(
     var.common_tags,
     map(
-      Name       = var.name
+      Name       = var.name,
       Automation = "Terraform"
     )
   )}"
