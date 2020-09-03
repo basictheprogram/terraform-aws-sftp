@@ -20,3 +20,8 @@ variable "domain_name" {
   type        = string
   default     = ""
 }
+
+variable "common_tags" {
+  description = "Common tags (tags)"
+  type        = map
+}

@@ -39,17 +39,17 @@ resource "aws_iam_role_policy" "main" {
 }
 
 resource "aws_transfer_server" "main" {
-
   identity_provider_type = "SERVICE_MANAGED"
+  logging_role           = aws_iam_role.main.arn
+  endpoint_type          = "PUBLIC"
 
-  logging_role = aws_iam_role.main.arn
-
-  endpoint_type = "PUBLIC"
-
-  tags = {
-    Name       = var.name
-    Automation = "Terraform"
-  }
+  tags = "${merge(
+    var.common_tags,
+    map(
+      Name       = var.name
+      Automation = "Terraform"
+    )
+  )}"
 }
 
 resource "aws_route53_record" "main" {
